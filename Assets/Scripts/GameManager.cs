@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static Action<float> updatevida;
     public Action isEnd;
     public SelectorSO Selector;
+    public HighScoreSO scores;
     PlayerSO playerSO;
     private float velocityPlayer = 0;
     public GameObject Nave;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         vida = 100;
-        SceneManager.LoadScene(3);
+        scores.AddScore((int)puntos);
+        SceneGlobalManager.PlayerLost();
     }
 }

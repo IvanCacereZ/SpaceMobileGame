@@ -9,7 +9,7 @@ public class SceneSelector : MonoBehaviour
         switch (Scene)
         {
             case 0:
-                Debug.Log("No se puede cargar la escena splash");
+                SceneGlobalManager.LoadMenuScene();
                 break;
             case 1:
                 Debug.Log("No se puede cargar la escena SceneGlobalManager por que ya esta cargada");

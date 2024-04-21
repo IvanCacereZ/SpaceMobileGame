@@ -12,6 +12,10 @@ public class SplashScreen : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
+        if (SceneGlobalManager.IsSceneLoaded("LoadScene") == false)
+        {
+            SceneGlobalManager.LoadScene();
+        }
         StartCoroutine(FadeOutRoutine());
     }
 
@@ -27,8 +31,5 @@ public class SplashScreen : MonoBehaviour
         }
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
         gameObject.SetActive(false);
-
-        SceneGlobalManager.LoadMenuScene();
-        SceneGlobalManager.UnloadSplashScreenScene();
     }
 }
