@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f629b4f2658b704c920a76f74d82d28, type: 3}
+  m_Name: Notificacion de mejor puntaje
+  m_EditorClassIdentifier: 
+  Id: Puntuacion
+  Name: Notifications
+  channel: 4
+  message: esta notificacion anunciara una nueva puntuacion maxima
+  _Tittle: "\xA1Nueva puntuacion maxima!"
+  _Text: este mensaje nunca se mostrara
+  _Hours: 0
