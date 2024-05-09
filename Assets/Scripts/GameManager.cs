@@ -46,6 +46,5 @@ public class GameManager : MonoBehaviour
     {
         vida = 100;
         scores.AddScore((int)puntos);
-        SceneGlobalManager.PlayerLost();
     }
 }

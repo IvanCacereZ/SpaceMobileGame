@@ -23,8 +23,8 @@ public class SpawnManager : MonoBehaviour
     void GenerarMeteorito()
     {
         float posY = Random.Range(minY, maxY);
-        GameObject meteor = meteorOP.GetObject();
-        meteor.transform.position = new Vector2(spawnX, posY);
+        //GameObject meteor = meteorOP.GetObject();
+        //meteor.transform.position = new Vector2(spawnX, posY);
     }
     void GenerarAlien()
     {

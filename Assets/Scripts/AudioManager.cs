@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     [Header("Clips")]
     public AudioClip LobbyMusic;
     public AudioClip GameMusic;
-    public AudioClip shootSFX;
+    public AudioClip clipSFX;
 
     private void Start()
     {
@@ -30,10 +30,10 @@ public class AudioManager : MonoBehaviour
         audioManger.clip = GameMusic;
         audioManger.Play();
     }
-    public void ShootClip()
+    public void SfxClip()
     {
         sfxManager.Stop();
-        sfxManager.clip = shootSFX;
+        sfxManager.clip = clipSFX;
         sfxManager.Play();
     }
 }

@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class SplashScreen : MonoBehaviour
 {
     public float fadeDuration = 2f;
-
+    public string FirstSceneName;
     private Image image;
 
     void Start()
     {
         image = GetComponent<Image>();
-        if (SceneGlobalManager.IsSceneLoaded("LoadScene") == false)
+        if (SceneGlobalManager.IsSceneLoaded(FirstSceneName) == false)
         {
-            SceneGlobalManager.LoadScene();
+            
         }
         StartCoroutine(FadeOutRoutine());
     }

@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: []
-  objPrefab: {fileID: 8841834519450195590, guid: 77b062805514ccf4e992623220e03310, type: 3}
+  objPrefab: {fileID: 8698567676458962278, guid: 77b062805514ccf4e992623220e03310, type: 3}
   maxQuantity: 15
 --- !u!4 &242217231
 Transform:
@@ -667,6 +667,8 @@ MonoBehaviour:
   vidaSlider: {fileID: 42305957}
   vidaText: {fileID: 1841892149}
   PuntosText: {fileID: 420564233}
+  scoreList: []
+  scoreManager: {fileID: 0}
 --- !u!4 &732185308
 Transform:
   m_ObjectHideFlags: 0

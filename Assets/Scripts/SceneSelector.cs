@@ -9,25 +9,21 @@ public class SceneSelector : MonoBehaviour
         switch (Scene)
         {
             case 0:
-                SceneGlobalManager.LoadMenuScene();
+                Debug.Log("No se puede cargar la escena SceneAditive por que ya esta cargada");
                 break;
-            case 1:
-                Debug.Log("No se puede cargar la escena SceneGlobalManager por que ya esta cargada");
+            /*case 1:
+                SceneGlobalManager.LoadScene("Nombre de la escena");
+                SceneGlobalManager.UnloadCurrentScene();
                 break;
             case 2:
-                SceneGlobalManager.LoadMenuScene();
-                SceneGlobalManager.UnloadGameScene();
                 break; 
             case 3:
-                SceneGlobalManager.LoadSelectorScene();
-                SceneGlobalManager.UnloadGameScene();
                 break;
             case 4:
-                SceneGlobalManager.LoadGameScene();
-                SceneGlobalManager.UnloadSelectorScreenScene();
                 break;
             case 5:
-                Debug.Log("No se puede cargar la escena Result");
+                break;*/
+            default:
                 break;
         }
     }

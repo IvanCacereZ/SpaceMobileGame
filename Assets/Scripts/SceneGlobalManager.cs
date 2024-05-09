@@ -2,66 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneGlobalManager : MonoBehaviour
 {
-    private static bool gameLost = false;
+    public float fadeDuration = 2f;
+    public string FirstSceneName;
+    private static string currentScene;
+    public Image imageLogo;
+    public Image background;
     [SerializeField] private static AudioManager audioController;
     private void Start()
     {
         audioController = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        audioController.ReproduceLobbyMusic();
-    }
-    public static void LoadScene()
-    {
-        SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
-    }
 
-    public static void LoadMenuScene()
-    {
-        UnloadGameScene();
-        SceneManager.LoadSceneAsync("Menu", LoadSceneMode.Additive);
-        audioController.ReproduceLobbyMusic();
-    }
-
-    public static void LoadSelectorScene()
-    {
-        if (IsSceneLoaded("Menu"))
+        if (IsSceneLoaded(FirstSceneName) == false)
         {
-            SceneManager.UnloadSceneAsync("Menu");
+            SceneManager.LoadSceneAsync(FirstSceneName, LoadSceneMode.Additive);
         }
-        UnloadGameScene();
-        if(IsSceneLoaded("Game"))
-            SceneManager.UnloadSceneAsync("Menu");
-        SceneManager.LoadSceneAsync("CharacterSelector", LoadSceneMode.Additive);
-    }
 
-    public static void LoadGameScene()
-    {
-        audioController.ReproduceGameMusic();
-        if (!IsSceneLoaded("Game") && !IsSceneLoaded("Result"))
+        if (imageLogo != null || background != null)
         {
-            SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
-            if (gameLost)
-            {
-                SceneManager.LoadSceneAsync("Result", LoadSceneMode.Additive);
-            }
+            StartCoroutine(FadeOutRoutine());
+        }
+    }
+    public static void LoadScene(string nameScene)
+    {
+        if (IsSceneLoaded(nameScene))
+        {
+            SceneManager.LoadSceneAsync(nameScene, LoadSceneMode.Additive);
+            currentScene = nameScene;
         }
     }
 
-    public static void UnloadGameScene()
+    public static void UnloadScene(string nameScene)
     {
-        if (IsSceneLoaded("Game") || IsSceneLoaded("Result"))
-        {
-            SceneManager.UnloadSceneAsync("Game");
-            SceneManager.UnloadSceneAsync("Result");
-            gameLost = false;
-        }
+        if (IsSceneLoaded(nameScene))
+            SceneManager.UnloadSceneAsync(nameScene);
     }
-
-    public static void UnloadSelectorScreenScene()
+    public static void UnloadCurrentScene()
     {
-        SceneManager.UnloadSceneAsync("CharacterSelector");
+        if (IsSceneLoaded(currentScene))
+            SceneManager.UnloadSceneAsync(currentScene);
     }
 
     public static bool IsSceneLoaded(string sceneName)
@@ -69,13 +51,20 @@ public class SceneGlobalManager : MonoBehaviour
         Scene scene = SceneManager.GetSceneByName(sceneName);
         return scene.isLoaded;
     }
-
-    public static void PlayerLost()
+    IEnumerator FadeOutRoutine()
     {
-        gameLost = true;
-        if (IsSceneLoaded("Game"))
+        float timer = 0f;
+        while (timer < fadeDuration)
         {
-            SceneManager.LoadSceneAsync("Result", LoadSceneMode.Additive);
+            float alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
+            imageLogo.color = new Color(imageLogo.color.r, imageLogo.color.g, imageLogo.color.b, alpha);
+            background.color = new Color(background.color.r, background.color.g, background.color.b, alpha);
+            timer += Time.deltaTime;
+            yield return null;
         }
+        imageLogo.color = new Color(imageLogo.color.r, imageLogo.color.g, imageLogo.color.b, 0f);
+        background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
+        imageLogo.gameObject.SetActive(false);
+        background.gameObject.SetActive(false);
     }
 }

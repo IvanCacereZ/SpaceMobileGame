@@ -39,10 +39,6 @@ public class MeteorBehaviour : MonoBehaviour
     }
     private void ReturnToPool()
     {
-        gameObject.SetActive(false);
-        if (objectPool != null)
-        {
-            objectPool.SetObject(gameObject);
-        }
+        objectPool.ReturnToPool(this);
     }
 }
